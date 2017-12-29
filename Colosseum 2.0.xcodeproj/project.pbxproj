@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		247095201FF6A402003396F7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2470951F1FF6A402003396F7 /* main.cpp */; };
+		247095291FF6A770003396F7 /* main2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 247095261FF6A76F003396F7 /* main2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,8 @@
 
 /* Begin PBXFileReference section */
 		2470951C1FF6A402003396F7 /* Colosseum 2.0 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Colosseum 2.0"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2470951F1FF6A402003396F7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		247095261FF6A76F003396F7 /* main2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main2.cpp; sourceTree = "<group>"; };
+		247095281FF6A770003396F7 /* library2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library2.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +58,8 @@
 		2470951E1FF6A402003396F7 /* Colosseum 2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				2470951F1FF6A402003396F7 /* main.cpp */,
+				247095281FF6A770003396F7 /* library2.h */,
+				247095261FF6A76F003396F7 /* main2.cpp */,
 			);
 			path = "Colosseum 2.0";
 			sourceTree = "<group>";
@@ -119,7 +121,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				247095201FF6A402003396F7 /* main.cpp in Sources */,
+				247095291FF6A770003396F7 /* main2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
