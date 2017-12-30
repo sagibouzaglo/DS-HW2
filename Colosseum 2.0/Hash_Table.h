@@ -26,6 +26,9 @@
 
 template<class T>
 class HashTable {
+    /***********************/
+    /*  Node Declaration   */
+    /***********************/
     template <class N, class K>
     class HashVertex {
         N nodeData;
@@ -50,7 +53,9 @@ class HashTable {
             HashNode::next = next;
         }
     };
-    
+    /**************************/
+    /*  Node Declaration End  */
+    /**************************/
     
 }
 
