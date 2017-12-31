@@ -72,7 +72,7 @@
 			);
 			name = "Colosseum 2.0";
 			path = Colosseum2.0;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
