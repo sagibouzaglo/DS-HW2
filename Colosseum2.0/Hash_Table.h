@@ -17,18 +17,18 @@
 
 /***************************************************************************/
 /*  Hash Table class                                                       */
-/*  types:
-/*  K-Key
-/*  N - node data
-/*  T - Hash data
- 
+/*  types:                                                                 */
+/*  K-Key                                                                  */
+/*  N - node data                                                          */
+/*  T - Hash data                                                          */
+/*                                                                         */
 /*  Operations:                                                            */
 /*  insert - insert data to the table                                      */
 /*  remove - remove data from the table                                    */
 /*  isEmpty - return true if table cell is empty                           */
 /***************************************************************************/
 
-template<class T>
+template <class N, class K>
 class HashTable {
     /***********************/
     /*  Node Declaration   */
@@ -38,6 +38,7 @@ class HashTable {
         N nodeData;
         K key;
         HashNode *next;
+        friend class HashTable;
     public:
         HashNode<N>(const T &nodeData, const K &key) :
                                    nodeData(nodeData),key(key), next(nullptr) {}
@@ -60,6 +61,16 @@ class HashTable {
     /**************************/
     /*  Node Declaration End  */
     /**************************/
+    int n;
+    int counter;
+    HashNode *table;
+   
+    public:
+    
+    HashMap() {
+        // construct zero initialized hash table of size
+        table = new HashNode<N, V> *[n]();
+    }
     
 }
 

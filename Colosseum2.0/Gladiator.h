@@ -9,7 +9,7 @@
 #ifndef Gladiator_h
 #define Gladiator_h
 
-#include "library1.h"
+#include "library2.h"
 class Trainer;
 
 class Gladiator {
