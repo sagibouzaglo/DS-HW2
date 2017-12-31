@@ -17,12 +17,16 @@
 
 /***************************************************************************/
 /*  Hash Table class                                                       */
+/*  types:
+/*  K-Key
+/*  N - node data
+/*  T - Hash data
+ 
 /*  Operations:                                                            */
 /*  insert - insert data to the table                                      */
 /*  remove - remove data from the table                                    */
 /*  isEmpty - return true if table cell is empty                           */
 /***************************************************************************/
-
 
 template<class T>
 class HashTable {
@@ -30,12 +34,12 @@ class HashTable {
     /*  Node Declaration   */
     /***********************/
     template <class N, class K>
-    class HashVertex {
+    class HashNode {
         N nodeData;
         K key;
-        HashVertex *next;
+        HashNode *next;
     public:
-        HashVertex<N>(const T &nodeData, const k &key) :
+        HashNode<N>(const T &nodeData, const K &key) :
                                    nodeData(nodeData),key(key), next(nullptr) {}
         K getKey(){
             return key;
