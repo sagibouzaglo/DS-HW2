@@ -67,77 +67,35 @@ class HashTable {
    
     public:
     // construct zero initialized hash table of size
-    HashTable() {
-        table = new HashNode<N, V> *[n]();
+    HashTable(int const size) : n(size), counter(0){
+        try{
+            table = new HashNode<N, V> *[size]();
+        }catch{
+            
+        }
+        
     }
     
-    SplayTree<T>():root(nullptr){}
-    
-    ~SplayTree(){
-        postOrderDemolition(this->root);
+    ~HashTable(){
+        delete [] table;
     }
     
-    SplayTree<T>(const SplayTree<T> &toCopy) : root(toCopy.root) {}///////////////////////////////////////////////
-    
-    /* Description:   This function Searches for a given data in the tree
-     * Input:         The data to find
-     *               Compare function for data 1 and 2, should return
-     *               1 if second arg is bigger, -1 if first arg is bigger,
-     *               0 if first and second arg are equal
-     * Output:        None.
-     * Return Values: true if key was found
-     *               false if not
+    /* Description:  This function Searches for a given data in the table
+     * Input:        The data to find
+     *               Compare function for data 1 and 2, return True for a match
+     * Output:       None.
+     * Return Value: The node who match the search, returns nullPtr if not found
      */
     template <class Compare>
-    bool Search(const T& toCheck, const Compare& compare) {
-        if (this->root == nullptr) {
-            return false;
-        }
-        this->root= splay(this->root,toCheck,compare);
-        return compare(root->data,toCheck)==0 ;
+    HashNode Search(const T& toCheck, const Compare& compare) {
+        
     }
     
-    /* Description:   This function returns the minimum key
-     * Input:         None.
-     * Output:        None.
-     * Exceptions:    TreeIsEmpty- if this is an empty tree
-     * Return Values: The minimum key
-     */
-    template <class Compare>
-    void Find_Min(const Compare& compare) {
-        if (this->root == nullptr) {
-            return ;
-        }
-        Vertex<T> *current = this->root;
-        while (current->left != nullptr) {
-            current = current->left;
-        }
-        this->root=splay(this->root, current->data,compare);
-    }
-    
-    /* Description:   This function returns the maximum key
-     * Input:         None.
-     * Output:        None.
-     * Exceptions:    TreeIsEmpty- if this is an empty tree
-     * Return Values: The maximum key
-     */
-    template <class Compare>
-    T* Find_Max(const Compare& compare) {
-        if (this->root == nullptr) {
-            return nullptr;
-        }
-        Vertex<T> *current = this->root;
-        while (current->right != nullptr) {
-            current = current->right;
-        }
-        this->root=splay(this->root, current->data,compare);
-        return (&(this->root->data));
-    }
     
     /* Description:   This function inserts new data  with a given
-     * key to the Splay Tree
+     *                key to the Hash table
      * Input:         Data to be saved
-     *               key in dictionary
+     *                key in dictionary
      * Output:        None.
      * Exceptions:    KeyExists if the given key already exists
      * Return Values: true-if insert succeded
@@ -161,6 +119,22 @@ class HashTable {
             return false;
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    SplayTree<T>(const SplayTree<T> &toCopy) : root(toCopy.root) {}///////////////////////////////////////////////
+    
+    
+  
     
     /* Description:   This function deletes the given DATA from the S_T
      * Input:         Data to be deleted

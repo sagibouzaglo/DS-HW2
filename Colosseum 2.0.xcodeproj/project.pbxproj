@@ -31,6 +31,7 @@
 		2470952D1FF6A89A003396F7 /* Splay_Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Splay_Tree.h; sourceTree = "<group>"; };
 		2470952F1FF6A8E5003396F7 /* Hash_Table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hash_Table.h; sourceTree = "<group>"; };
 		247095301FF92ADB003396F7 /* main2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main2.cpp; sourceTree = "<group>"; };
+		247095321FF930B6003396F7 /* Ranked_Splay_Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ranked_Splay_Tree.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +66,7 @@
 			children = (
 				247095301FF92ADB003396F7 /* main2.cpp */,
 				247095281FF6A770003396F7 /* library2.h */,
+				247095321FF930B6003396F7 /* Ranked_Splay_Tree.h */,
 				2470952F1FF6A8E5003396F7 /* Hash_Table.h */,
 				2470952D1FF6A89A003396F7 /* Splay_Tree.h */,
 				2470952B1FF6A89A003396F7 /* Gladiator.h */,
