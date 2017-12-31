@@ -8,7 +8,7 @@
 #include <assert.h>
 
 int main(){
-    Gladiator glad1(1,1,1);
+    Gladiator glad1(1,NULL,1);
     assert(glad1.GetID()==1);
     assert(glad1.GetLevel()==1);
     assert(glad1.LevelUp(1)==SUCCESS);
