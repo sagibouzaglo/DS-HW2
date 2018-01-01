@@ -75,10 +75,11 @@ class HashTable {
         HashNode<T> **oldTable = table;
         tableSize*=2;
         table = new HashNode<T>*[tableSize];
-        for (int i = 0; i < tableSize; i++)
+        for (int i = 0; i < tableSize; i++){
             table[i] = nullptr;
+        }
         numOfElements = 0;
-        for (int index = 0; index < oldTableSize; ++index)
+        for (int index = 0; index < oldTableSize; ++index){
             if (oldTable[index] != nullptr) {
                 HashNode<T> *previous;
                 HashNode<T> *current = oldTable[index];
@@ -89,6 +90,7 @@ class HashTable {
                     delete previous;
                 }
             }
+        }
         delete[] oldTable;
     }
     

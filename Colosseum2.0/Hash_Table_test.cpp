@@ -6,14 +6,6 @@
 //  Copyright © 2018 sagi bouzaglo. All rights reserved.
 //
 
-//
-//  Hash_Table_test.h
-//  Colosseum 2.0
-//
-//  Created by sagi bouzaglo on 01/01/2018.
-//  Copyright © 2018 sagi bouzaglo. All rights reserved.
-//
-
 #ifndef Hash_Table_test_h
 #define Hash_Table_test_h
 
@@ -44,8 +36,6 @@ int main() {
     assert(*(hashTable.search(4, compare)) == 3);
 
     printInt(3);
-    
-    
     
  //   assert(*hashTable.search(15) == 15);
 //    assert(*hashTable.search(1) == 1);
