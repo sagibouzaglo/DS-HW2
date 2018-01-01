@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#define nullptr 0
+#define nullPtr 0
 
 /***************************************************************************/
 /*  Hash Table class                                                       */
@@ -28,75 +28,119 @@
 /*  isEmpty - return true if table cell is empty                           */
 /***************************************************************************/
 
-template <class T, class V>
+template <class T>
 class HashTable {
     /***********************/
     /*  Node Declaration   */
     /***********************/
-    template <class N, class K>
+    template <class N>
     class HashNode {
         N nodeData;
-        K key;
+        int key;
         HashNode *next;
+        
     public:
-        HashNode<N>(const N &nodeData, const K &key) :
-                                   nodeData(nodeData),key(key), next(nullptr) {}
-        K getKey(){
+        // construct hash node with the given data and key
+        HashNode<N>(const N &nodeData, const int &key) :
+                                   nodeData(nodeData),key(key), next(nullPtr) {}
+        HashNode(const HashNode &);
+        HashNode<T> & operator=(const HashNode<T> &);
+        int getKey(){
             return key;
         }
-        N getNodeData(){
-            return nodeData;
+        N* getNodeData(){
+            return &nodeData;
         }
         void setNodeData(N nodeData){
             HashNode::nodeData = nodeData;
         }
-        HashNode *getNext() const {
+        HashNode *getNext()  {
             return next;
         }
-        void setNext(HashNode *next) {
-            HashNode::next = next;
+        void setNext(HashNode *newNext)
+        {
+            next = newNext;
         }
     };
     /**************************/
     /*  Node Declaration End  */
     /**************************/
     int tableSize;
-    int counter;
-    HashNode<T,V> *table;
+    int numOfElements;
+    HashNode<T> **table;
    
+    template <class Compare>
+    void tableReSize(const Compare& compare){
+        int oldTableSize = tableSize;
+        HashNode<T> **oldTable = table;
+        tableSize*=2;
+        table = new HashNode<T>*[tableSize];
+        for (int i = 0; i < tableSize; i++)
+            table[i] = nullptr;
+        numOfElements = 0;
+        for (int index = 0; index < oldTableSize; ++index)
+            if (oldTable[index] != nullptr) {
+                HashNode<T> *previous;
+                HashNode<T> *current = oldTable[index];
+                while (current != NULL) {
+                    insert( *current->getNodeData(),current->getKey(),compare);
+                    previous = current;
+                    current = current->getNext();
+                    delete previous;
+                }
+            }
+        delete[] oldTable;
+    }
+    
     public:
     // construct zero initialized hash table of size
     HashTable(int const size) {
         tableSize=size;
-        counter=0;
-        table = new HashNode<T, V> *[size]();
+        numOfElements=0;
+        table = new HashNode<T> *[size]();
         for (int i = 0; i < size; i++){
-            table[i] = NULL;
+            table[i] = nullptr;
         }
     }
     
     // destroys the table
     ~HashTable(){
+        for (int i = 0; i < this->tableSize; ++i) {
+            HashNode<T> *current = table[i];
+            while (current != NULL) {
+                HashNode<T> *previous = current;
+                current = current->getNext();
+                delete previous;
+            }
+            table[i] = nullptr;
+        }
         delete [] table;
     }
     
-    /* Description:  This function Searches for a given data in the table
-     * Input:        The data to find
-     *               Compare function for data 1 and 2, return True for a match
-     * Return Value: The node who match the search, returns nullPtr if not found
+    /* Description:   This function inserts new data  with a given
+     *                key to the Hash table
+     * Input:         Data to be saved
+     *                key of data
+     * Output:        None.
+     * Exceptions:
+     * Return Values: true if insert succeded, false if not
      */
     template <class Compare>
-    bool insert(const T &data,const V &key, const Compare& compare){
-        if (search(key,compare)!=NULL){
+    bool insert(const T &data,const int &key, const Compare& compare){
+        if (search(key,compare) != nullptr){
             return false;
         }
-        HashNode<T,V> tmpNode = new HashNode<T,V>(data,key);
+        HashNode<T> *tmpNode = new HashNode<T>(data,key);
         int index=this->hash(key);
-        if(!this->table[index]){
-            this->table[index].next=tmpNode;
+        if (!(this->table[index])) {
+            (this->table[index])=tmpNode;
         }else{
-            tmpNode.next = this->table[index].next;
+            tmpNode->setNext(table[index]);
             this->table[index]=tmpNode;
+        }
+        this->numOfElements++;
+        if (this->numOfElements>=(this->tableSize/2)){
+           tableReSize(compare);
         }
         return true;
     }
@@ -107,69 +151,31 @@ class HashTable {
      * Return Value: The node who match the search, returns nullPtr if not found
      */
     template <class Compare>
-    HashNode<T,V>* search(const V& toCheck, const Compare& compare) {
-        HashNode<T,V>* tmpNode = this->getCell(toCheck);
-        if (!tmpNode){
-            return NULL;
+    T* search(const int& key, const Compare& compare) {
+        int index = hash(key);
+        HashNode<T> *prev = nullptr;
+        HashNode<T> *current = table[index];
+        while (current != nullptr && (!compare(key,current->getKey()))) {
+            prev = current;
+            current = current->getNext();
         }
-        while ((compare(tmpNode->getKey(),toCheck)!=0) && (!tmpNode)){
-            tmpNode=tmpNode->getNext();
+        // reached the end of the objects, object doesnt exist
+        if (current == nullptr){
+            return nullptr;
+        }else{ // object exist
+            return (current->getNodeData());
         }
-        if (!tmpNode){
-            return NULL;
-        }
-        return tmpNode;
     }
-    
-    /* Description:   This function gets a key and return a pointer for the
-     *                matching node for that key.
-     * Input:         key for hash table
-     * Output:        None.
-     * Return Values: pointer for the matching node, null if node doesn't exist
-     */
-    HashNode<T,V>* getCell(const V& key) {
-        return this->table[hash(key)];
-    }
-    
+
     /* Description:   This function gets a key and return the index to insert
      *                the input to the Hash table
      * Input:         key for hash table
      * Output:        None.
      * Return Values: this hashed key
      */
-    int hash (const V& key){
+    int hash (const int& key){
         return key % this->tableSize;
     }
-    
-    /* Description:   This function inserts new data  with a given
-     *                key to the Hash table
-     * Input:         Data to be saved
-     *               key in dictionary
-     * Output:        None.
-     * Exceptions:    KeyExists if the given key already exists
-     * Return Values: true-if insert succeded
-     *               false if not
-     */
-//    template <class Compare>
-//    bool Insert(const T &data, const Compare& compare) {
-       
-//    }
-    
-    /* Description:   This function deletes the given DATA from the S_T
-     * Input:         Data to be deleted
-     *              Compare function
-     * Output:        None.
-     * Exceptions:    KeyDoesntExists if the given key doesnt exist
-     * Return Values: true- if the data was found and deleted
-     *               false- if data wasnt found
-     */
-//    template <class Compare>
-//    bool Delete(const T& data,const Compare& compare) {
-       
-//    }
-    
-    
-    
 };
     
 #endif /* Hash_Table_h */

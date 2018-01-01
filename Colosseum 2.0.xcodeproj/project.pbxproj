@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2470952E1FF6A89A003396F7 /* Gladiator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2470952C1FF6A89A003396F7 /* Gladiator.cpp */; };
-		247095331FFA50BF003396F7 /* Hash_Table.h in Sources */ = {isa = PBXBuildFile; fileRef = 2470952F1FF6A8E5003396F7 /* Hash_Table.h */; };
-		247095341FFA50C3003396F7 /* Splay_Tree.h in Sources */ = {isa = PBXBuildFile; fileRef = 2470952D1FF6A89A003396F7 /* Splay_Tree.h */; };
 		247095391FFA549C003396F7 /* Hash_Table_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 247095371FFA5480003396F7 /* Hash_Table_test.cpp */; };
 /* End PBXBuildFile section */
 
@@ -71,8 +69,8 @@
 				247095281FF6A770003396F7 /* library2.h */,
 				247095321FF930B6003396F7 /* Ranked_Splay_Tree.h */,
 				2470952F1FF6A8E5003396F7 /* Hash_Table.h */,
-				2470952D1FF6A89A003396F7 /* Splay_Tree.h */,
 				247095371FFA5480003396F7 /* Hash_Table_test.cpp */,
+				2470952D1FF6A89A003396F7 /* Splay_Tree.h */,
 				2470952B1FF6A89A003396F7 /* Gladiator.h */,
 				2470952C1FF6A89A003396F7 /* Gladiator.cpp */,
 			);
@@ -138,8 +136,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				247095391FFA549C003396F7 /* Hash_Table_test.cpp in Sources */,
-				247095341FFA50C3003396F7 /* Splay_Tree.h in Sources */,
-				247095331FFA50BF003396F7 /* Hash_Table.h in Sources */,
 				2470952E1FF6A89A003396F7 /* Gladiator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
