@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2470952E1FF6A89A003396F7 /* Gladiator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2470952C1FF6A89A003396F7 /* Gladiator.cpp */; };
-		247095311FF92ADB003396F7 /* main2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 247095301FF92ADB003396F7 /* main2.cpp */; };
+		247095331FFA50BF003396F7 /* Hash_Table.h in Sources */ = {isa = PBXBuildFile; fileRef = 2470952F1FF6A8E5003396F7 /* Hash_Table.h */; };
+		247095341FFA50C3003396F7 /* Splay_Tree.h in Sources */ = {isa = PBXBuildFile; fileRef = 2470952D1FF6A89A003396F7 /* Splay_Tree.h */; };
+		247095391FFA549C003396F7 /* Hash_Table_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 247095371FFA5480003396F7 /* Hash_Table_test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +34,7 @@
 		2470952F1FF6A8E5003396F7 /* Hash_Table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hash_Table.h; sourceTree = "<group>"; };
 		247095301FF92ADB003396F7 /* main2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main2.cpp; sourceTree = "<group>"; };
 		247095321FF930B6003396F7 /* Ranked_Splay_Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ranked_Splay_Tree.h; sourceTree = "<group>"; };
+		247095371FFA5480003396F7 /* Hash_Table_test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Hash_Table_test.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,7 @@
 				247095321FF930B6003396F7 /* Ranked_Splay_Tree.h */,
 				2470952F1FF6A8E5003396F7 /* Hash_Table.h */,
 				2470952D1FF6A89A003396F7 /* Splay_Tree.h */,
+				247095371FFA5480003396F7 /* Hash_Table_test.cpp */,
 				2470952B1FF6A89A003396F7 /* Gladiator.h */,
 				2470952C1FF6A89A003396F7 /* Gladiator.cpp */,
 			);
@@ -133,8 +137,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				247095391FFA549C003396F7 /* Hash_Table_test.cpp in Sources */,
+				247095341FFA50C3003396F7 /* Splay_Tree.h in Sources */,
+				247095331FFA50BF003396F7 /* Hash_Table.h in Sources */,
 				2470952E1FF6A89A003396F7 /* Gladiator.cpp in Sources */,
-				247095311FF92ADB003396F7 /* main2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

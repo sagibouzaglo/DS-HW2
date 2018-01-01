@@ -28,7 +28,7 @@
 /*  isEmpty - return true if table cell is empty                           */
 /***************************************************************************/
 
-template <class N, class K>
+template <class T, class V>
 class HashTable {
     /***********************/
     /*  Node Declaration   */
@@ -38,9 +38,8 @@ class HashTable {
         N nodeData;
         K key;
         HashNode *next;
-        friend class HashTable;
     public:
-        HashNode<N>(const T &nodeData, const K &key) :
+        HashNode<N>(const N &nodeData, const K &key) :
                                    nodeData(nodeData),key(key), next(nullptr) {}
         K getKey(){
             return key;
@@ -49,7 +48,7 @@ class HashTable {
             return nodeData;
         }
         void setNodeData(N nodeData){
-            hashVertex::nodeData = nodeData;
+            HashNode::nodeData = nodeData;
         }
         HashNode *getNext() const {
             return next;
@@ -61,21 +60,22 @@ class HashTable {
     /**************************/
     /*  Node Declaration End  */
     /**************************/
-    int n;
+    int tableSize;
     int counter;
-    HashNode *table;
+    HashNode<T,V> *table;
    
     public:
     // construct zero initialized hash table of size
-    HashTable(int const size) : n(size), counter(0){
-        try{
-            table = new HashNode<N, V> *[size]();
-        }catch{
-            
+    HashTable(int const size) {
+        tableSize=size;
+        counter=0;
+        table = new HashNode<T, V> *[size]();
+        for (int i = 0; i < size; i++){
+            table[i] = NULL;
         }
-        
     }
     
+    // destroys the table
     ~HashTable(){
         delete [] table;
     }
@@ -83,58 +83,77 @@ class HashTable {
     /* Description:  This function Searches for a given data in the table
      * Input:        The data to find
      *               Compare function for data 1 and 2, return True for a match
-     * Output:       None.
      * Return Value: The node who match the search, returns nullPtr if not found
      */
     template <class Compare>
-    HashNode Search(const T& toCheck, const Compare& compare) {
-        
+    bool insert(const T &data,const V &key, const Compare& compare){
+        if (search(key,compare)!=NULL){
+            return false;
+        }
+        HashNode<T,V> tmpNode = new HashNode<T,V>(data,key);
+        int index=this->hash(key);
+        if(!this->table[index]){
+            this->table[index].next=tmpNode;
+        }else{
+            tmpNode.next = this->table[index].next;
+            this->table[index]=tmpNode;
+        }
+        return true;
     }
     
+    /* Description:  This function Searches for a given data in the table
+     * Input:        The data to find
+     *               Compare function for data 1 and 2, return True for a match
+     * Return Value: The node who match the search, returns nullPtr if not found
+     */
+    template <class Compare>
+    HashNode<T,V>* search(const V& toCheck, const Compare& compare) {
+        HashNode<T,V>* tmpNode = this->getCell(toCheck);
+        if (!tmpNode){
+            return NULL;
+        }
+        while ((compare(tmpNode->getKey(),toCheck)!=0) && (!tmpNode)){
+            tmpNode=tmpNode->getNext();
+        }
+        if (!tmpNode){
+            return NULL;
+        }
+        return tmpNode;
+    }
+    
+    /* Description:   This function gets a key and return a pointer for the
+     *                matching node for that key.
+     * Input:         key for hash table
+     * Output:        None.
+     * Return Values: pointer for the matching node, null if node doesn't exist
+     */
+    HashNode<T,V>* getCell(const V& key) {
+        return this->table[hash(key)];
+    }
+    
+    /* Description:   This function gets a key and return the index to insert
+     *                the input to the Hash table
+     * Input:         key for hash table
+     * Output:        None.
+     * Return Values: this hashed key
+     */
+    int hash (const V& key){
+        return key % this->tableSize;
+    }
     
     /* Description:   This function inserts new data  with a given
      *                key to the Hash table
      * Input:         Data to be saved
-     *                key in dictionary
+     *               key in dictionary
      * Output:        None.
      * Exceptions:    KeyExists if the given key already exists
      * Return Values: true-if insert succeded
      *               false if not
      */
-    template <class Compare>
-    bool Insert(const T &data, const Compare& compare) {
-        if (this->root == nullptr) {
-            this->root=new Vertex<T>(data);
-            return true;
-        }
-        Vertex<T> *right, *left;
-        //Key wasnt found
-        if (!(split(this->root, left, right, data,compare))) {
-            Vertex<T>* new_root=new Vertex<T>(data,left,right);
-            this->root=new_root;
-            return true;
-        }
-        //Key exists
-        else{
-            return false;
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    SplayTree<T>(const SplayTree<T> &toCopy) : root(toCopy.root) {}///////////////////////////////////////////////
-    
-    
-  
+//    template <class Compare>
+//    bool Insert(const T &data, const Compare& compare) {
+       
+//    }
     
     /* Description:   This function deletes the given DATA from the S_T
      * Input:         Data to be deleted
@@ -144,37 +163,13 @@ class HashTable {
      * Return Values: true- if the data was found and deleted
      *               false- if data wasnt found
      */
-    template <class Compare>
-    bool Delete(const T& data,const Compare& compare) {
-        if(this->root== nullptr){
-            return false;
-        }
-        //key was found
-        if(this->Search(data,compare)){
-            Vertex<T>* toDelete=this->root;
-            this->root=join(this->root->left,this->root->right,compare);
-            delete toDelete;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    template <class Function>
-    void InOrder(Function& func){
-        inOrderTraversal(this->root,func);
-    }
+//    template <class Compare>
+//    bool Delete(const T& data,const Compare& compare) {
+       
+//    }
     
-    template <class Function>
-    void BackwardsInOrder(Function& func){
-        BackwardsinOrderTraversal(this->root,func);
-    }
     
-    T& GetRoot(){
-        return this->root->data;
-    }
+    
 };
     
-}
-
 #endif /* Hash_Table_h */
