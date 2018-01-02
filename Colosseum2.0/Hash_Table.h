@@ -11,21 +11,19 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <assert.h>
 
 #define nullPtr 0
 
 /***************************************************************************/
 /*  Hash Table class                                                       */
 /*  types:                                                                 */
-/*  K-Key                                                                  */
-/*  N - node data                                                          */
-/*  T - Hash data                                                          */
+/*  int - Key                                                              */
+/*  T - node data                                                          */
+/*  HashNode - Hash data                                                   */
 /*                                                                         */
 /*  Operations:                                                            */
 /*  insert - insert data to the table                                      */
-/*  remove - remove data from the table                                    */
-/*  isEmpty - return true if table cell is empty                           */
+/*  search - check if the data already exist                               */
 /***************************************************************************/
 
 template <class T>
@@ -43,8 +41,8 @@ class HashTable {
         // construct hash node with the given data and key
         HashNode<N>(const N &nodeData, const int &key) :
                                    nodeData(nodeData),key(key), next(nullPtr) {}
-        HashNode(const HashNode &);
-        HashNode<T> & operator=(const HashNode<T> &);
+        HashNode<N>(const HashNode &);
+        HashNode<N> & operator=(const HashNode<N> &);
         int getKey(){
             return key;
         }
@@ -69,6 +67,13 @@ class HashTable {
     int numOfElements;
     HashNode<T> **table;
    
+    
+    /* Description:   This function change the size of the Hash Table, and
+     *                insert the old data with the new hash key.
+     * Input:         Compare function
+     * Output:        None.
+     * Return Values: None.
+     */
     template <class Compare>
     void tableReSize(const Compare& compare){
         int oldTableSize = tableSize;
@@ -92,6 +97,17 @@ class HashTable {
             }
         }
         delete[] oldTable;
+    }
+    
+    
+    /* Description:   This function gets a key and return the index to insert
+     *                the input to the Hash table
+     * Input:         key for hash table
+     * Output:        None.
+     * Return Values: this hashed key
+     */
+    int hash (const int& key){
+        return key % this->tableSize;
     }
     
     public:
@@ -119,10 +135,11 @@ class HashTable {
         delete [] table;
     }
     
-    /* Description:   This function inserts new data  with a given
-     *                key to the Hash table
-     * Input:         Data to be saved
+    /* Description:   This function inserts new data  with a given key to the
+     *                Hash table
+     * Input:         Data
      *                key of data
+     *                Compare function
      * Output:        None.
      * Exceptions:
      * Return Values: true if insert succeded, false if not
@@ -141,7 +158,7 @@ class HashTable {
             this->table[index]=tmpNode;
         }
         this->numOfElements++;
-        if (this->numOfElements>=(this->tableSize/2)){
+        if (this->numOfElements >= (this->tableSize/2)){
            tableReSize(compare);
         }
         return true;
@@ -167,16 +184,6 @@ class HashTable {
         }else{ // object exist
             return (current->getNodeData());
         }
-    }
-
-    /* Description:   This function gets a key and return the index to insert
-     *                the input to the Hash table
-     * Input:         key for hash table
-     * Output:        None.
-     * Return Values: this hashed key
-     */
-    int hash (const int& key){
-        return key % this->tableSize;
     }
 };
     
