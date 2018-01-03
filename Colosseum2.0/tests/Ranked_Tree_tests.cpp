@@ -8,6 +8,7 @@
 #include <iostream>
 #include <sstream>
 #include "../Ranked_Tree.h"
+#include "../Gladiator.h"
 
 class Compare {
 
@@ -30,7 +31,6 @@ void printInt(const int& x) {
 }
 
 int main() {
-    //RankedSplayTree<int,Compare,getKey>  myTree(Compare(),getKey());
     RankedSplayTree<int,Compare,getKey> tree;
     int arr[8] = {1,15,3,8,32,6,4,8};
     for(int i=0; i<8; i++)
@@ -41,6 +41,8 @@ int main() {
         int bestKsum = tree.getBestKSum(i);
         std::cout << "The sum of the best " << i<<" is "<<bestKsum<<std::endl;
     }
+
+
 /**
     std::cout << "InOrder Print: " << std::endl; //EXPECTED: 1 3 4 6 8 15 32
     tree.InOrder(printInt);
@@ -59,5 +61,15 @@ int main() {
     std::cout << "InOrder Print: " << std::endl; //EXPECTED: 1 3 4 6 8 15 32
     tree.InOrder(printInt);
      **/
+
+    RankedSplayTree<Gladiator,CompareGladiatorByLevel,getGladiatorLevel> gladTree;
+    for (int j = 0; j <10 ; ++j) {
+        Gladiator gladiator(j,nullptr,j);
+        gladTree.Insert(gladiator);
+    }
+    for (int k = 1; k <10 ; ++k) {
+        int bestKsum = gladTree.getBestKSum(k);
+        std::cout << "The sum of the best " << k<<" is "<<bestKsum<<std::endl;
+    }
     return 0;
 }

@@ -10,14 +10,22 @@
 #include <assert.h>
 
 #define nullptr 0
+#define ERROR INT_MIN
 
 /***************************************************************************/
-/*  Splay tree class                                                       */
+/*  Ranked Splay tree class                                                       */
 /*  Operations:                                                            */
-/*  insert - insert node to the tree                                       */
-/*  remove - remove node from the tree                                     */
+/*  Insert - insert a given data to the data structure                                       */
+/*  Delete - remove a given data to the data structure
+ *  Search - finds a given data in the data structre
+ *  InOrder - activates a function on the tree elemens by rank
+ *  Select - returns the number k ranked element in the data structure
+ *  GetBestKSum - returns the sum of best K keys in the DS                 */
 /*  isEmpty - return true if tree is empty                                 */
 /***************************************************************************/
+
+
+
 template<class T,class Compare,class ExtractKey>
 class RankedSplayTree {
     /***************************************************************************/
@@ -44,9 +52,6 @@ class RankedSplayTree {
                                          sumOfLeftSubTree(0),
                                          sumOfRightSubTree(0) {}
 
-        /** RankedVertex<N>(const T &data, RankedVertex<T> *left, RankedVertex<T> *right) :
-                 data(data), left(left), right(right) {} **/
-
         ~RankedVertex<N>() {
             left = nullptr;
             right = nullptr;
@@ -65,9 +70,17 @@ class RankedSplayTree {
                                                                node.sumOfRightSubTree) {}
     };
     /*******end of node********************/
+
+
+
+
+
+
     /**************************************************************************/
-    /*  Splay_tree private  Declaration                */
+    /*  Splay_tree private  Parts                */
     /**************************************************************************/
+
+
     RankedVertex<T> *root;
     Compare compare;
     ExtractKey getKey;
@@ -118,9 +131,6 @@ class RankedSplayTree {
      *                 it makes the root the last accessed node while searching
     * Input:         1)current root
      *               2)the data to compare to
-     *               3)Function object "compare" function-
-     *               that should give 1 if second arg is bigger 0 if equal and
-     *               -1 if first arg is bigger.
     * Output:        None.
     * Return Values: A pointer to the new root
     */
@@ -176,9 +186,6 @@ class RankedSplayTree {
     *  key.
     * Input:         1)The root you want to split
      *               2)the data to compare to
-     *               3)Function object "compare" function-
-     *               that should give 1 if second arg is bigger 0 if equal and
-     *               -1 if first arg is bigger.
      *               4)pointer to aftermath left_root.
      *              5)pointer to aftermath right_root
     * Output:        None.
@@ -270,6 +277,14 @@ class RankedSplayTree {
         return;
     }
 
+    /* Description:   This function does an BackwardsInOrder Traversal on a given root
+ *                and use the function that it is given on each vertex
+* Input:         1) to root to start from
+*               2)Function object "function" function-
+*               that should do whatever you want on a given data
+* Output:        None.
+* Return Values: None.
+*/
     template<class Function>
     void BackwardsinOrderTraversal(RankedVertex<T> *root, Function &func) {
         if (root == nullptr) return;
@@ -279,7 +294,10 @@ class RankedSplayTree {
         return;
     }
 
-
+    /**
+     * The function destroys the tree from a given root to bottom
+     * @param root to destory
+     */
     void postOrderDemolition(RankedVertex<T> *root) {
         if (root == nullptr) {
             return;
@@ -288,6 +306,13 @@ class RankedSplayTree {
         postOrderDemolition(root->right);
         delete root;
     }
+    /**
+ * Recursive function the travels on the tree to find the K ranked element
+ * @param a vertex in the tree
+ * @param the number of elements that are smaller then the given vertex
+     * @param the rank you want to find
+ * @return the k ranked element
+ */
     T& innerSelect(RankedVertex<T> *vertex, unsigned int biggerthanI , int k){
         //found the k index
         if(k==biggerthanI+vertex->sizeOfLeftSubTree+1) return vertex->data;
@@ -300,16 +325,17 @@ class RankedSplayTree {
     }
 
 public:
+
     RankedSplayTree<T,Compare,ExtractKey>(const Compare &comparef, const ExtractKey& getkeyf):
     root(nullptr),compare(comparef),getKey(getkeyf){}
-    RankedSplayTree<T,Compare,ExtractKey>():root(nullptr),compare(Compare()),getKey(ExtractKey()){}
+
+    RankedSplayTree<T,Compare,ExtractKey>():
+            root(nullptr),compare(Compare()),getKey(ExtractKey()){}
 
     ~RankedSplayTree() {
         postOrderDemolition(this->root);
     }
 
-    /**RankedSplayTree<T>(const RankedVertex<T> &toCopy) : root(
-            toCopy.root) {}**/
 
     /* Description:   This function Searches for a given data in the tree
     * Input:         The data to find
@@ -320,12 +346,13 @@ public:
     * Return Values: true if key was found
      *               false if not
     */
-    bool Search(const T &toCheck) {
+    T* Search(const T &toCheck) {
         if (this->root == nullptr) {
-            return false;
+            return nullptr;
         }
         this->root = splay(this->root, toCheck);
-        return compare(root->data, toCheck) == 0;
+        if(compare(this->root,toCheck)!=0) return nullptr;
+        return (&(this->root->data));
     }
 
     /* Description:   This function returns the minimum key
@@ -334,15 +361,16 @@ public:
     * Exceptions:    TreeIsEmpty- if this is an empty tree
     * Return Values: The minimum key
     */
-    void Find_Min() {
+    T* Find_Min() {
         if (this->root == nullptr) {
-            return;
+            return nullptr;
         }
         RankedVertex<T> *current = this->root;
         while (current->left != nullptr) {
             current = current->left;
         }
         this->root = splay(this->root, current->data);
+        return (&(this->root->data));
     }
 
     /* Description:   This function returns the maximum key
@@ -432,20 +460,31 @@ public:
             return false;
         }
     }
+    /* Description:   This function travels on a tree in an inorder way
+    * Input:         function to implement on elements
+    * Output:        None.
 
+*/
     template<class Function>
     void InOrder(Function &func) {
         inOrderTraversal(this->root, func);
     }
+    /* Description:   This function travels on a tree in a
+     *                Backwardsinorder way
+    * Input:         function to implement on elements
+    * Output:        None.
 
+*/
     template<class Function>
     void BackwardsInOrder(Function &func) {
         BackwardsinOrderTraversal(this->root, func);
     }
 
-    T &GetRoot() {
-        return this->root->data;
-    }
+    /* Description:   This function returns the k ranked element in the tree
+* Input:         The rank to find
+* Output:        nullptr if not found or bad argument
+     *           a pointer to the desired element if found.
+*/
     T* Select(unsigned int k){
         if(this->root==nullptr) return nullptr;
         if(k>this->root->sizeOfLeftSubTree+this->root->sizeOfRightSubTree+1 || k<0)
@@ -461,10 +500,15 @@ public:
         }
         return &(this->root->data);
     }
-
+    /* Description:   This function returns the sum of the best k elements in
+     *                  the tree
+* Input:         k
+* Output:        ERROR if given a bad argument
+     *           sum of best k elements if succeful
+*/
     int getBestKSum(unsigned int k){
         int numberOfElements=this->root->sizeOfLeftSubTree+this->root->sizeOfRightSubTree+1;
-        if(k>numberOfElements || k<0) return -1;
+        if(k>numberOfElements || k<0) return ERROR;
         if(k==numberOfElements){
             this->Select(1);
            return this->root->sumOfRightSubTree+this->getKey(this->root->data);
