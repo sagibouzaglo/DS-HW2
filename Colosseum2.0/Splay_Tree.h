@@ -24,7 +24,7 @@ class SplayTree {
     /*  Node Declaration                                                       */
     /***************************************************************************/
     template<class N>
-    virtual class Vertex {
+     class Vertex {
         N data;
         Vertex<N> *left;
         Vertex<N> *right;
