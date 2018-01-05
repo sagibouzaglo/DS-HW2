@@ -8,6 +8,7 @@
 #include "library2.h"
 #include "Ranked_Tree.h"
 #include "Gladiator.h"
+#include "Splay_Tree.h"
 
 class Training_Group {
     int ID;
@@ -25,9 +26,19 @@ public:
 
     bool isActive() const;
 
+    /**
+     * Importent!- Because Training group Class doesnt have an ID tree
+     * it CANNOT!!!! differ 2 gladiators with same ID but not same level
+     * Please Advise to check correctness of insertion prior of using
+     * or add a GladiatorID tree to the class
+     * @param gladiatorID
+     * @param level
+     * @return True if insertion was successful
+     *          Flase if not
+     */
     bool addGladiator(int gladiatorID,int level);
 
-    bool TurnOFF();
+    void TurnOFF();
 
     int getBestKGladiatorsScore(int k);
 

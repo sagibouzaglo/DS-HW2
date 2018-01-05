@@ -19,12 +19,12 @@ bool Training_Group::isActive() const {
     return this->IsActive;
 }
 /**---------------------------------------------------------------------------*/
-bool Training_Group::TurnOFF() {
+void Training_Group::TurnOFF() {
     this->IsActive= false;
 }
 /**---------------------------------------------------------------------------*/
 bool Training_Group::addGladiator(int gladiatorID,int level) {
-    Gladiator gladiator(ID,nullptr,level);
+    Gladiator gladiator(gladiatorID,nullptr,level);
     return this->gladiators.Insert(gladiator);
 }
 /**---------------------------------------------------------------------------*/
