@@ -69,4 +69,14 @@ public:
     }
 };
 
+class getGladiatorLevel {
+
+public:
+    explicit getGladiatorLevel() {}
+
+    int operator()(const Gladiator &glad1) const {
+        return glad1.GetLevel();
+    }
+};
+
 #endif /* Gladiator_h */
