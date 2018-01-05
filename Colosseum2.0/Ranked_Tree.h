@@ -21,7 +21,6 @@
  *  InOrder - activates a function on the tree elemens by rank
  *  Select - returns the number k ranked element in the data structure
  *  GetBestKSum - returns the sum of best K keys in the DS                 */
-/*  isEmpty - return true if tree is empty                                 */
 /***************************************************************************/
 
 
@@ -506,7 +505,7 @@ public:
 * Output:        ERROR if given a bad argument
      *           sum of best k elements if succeful
 */
-    int getBestKSum(unsigned int k){
+    int getBestKSum(int k){
         int numberOfElements=this->root->sizeOfLeftSubTree+this->root->sizeOfRightSubTree+1;
         if(k>numberOfElements || k<0) return ERROR;
         if(k==numberOfElements){
