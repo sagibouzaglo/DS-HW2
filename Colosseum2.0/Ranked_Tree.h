@@ -36,8 +36,8 @@ class RankedSplayTree {
         N data;
         RankedVertex<N> *left;
         RankedVertex<N> *right;
-         int sizeOfLeftSubTree;
-         int sizeOfRightSubTree;
+        int sizeOfLeftSubTree;
+        int sizeOfRightSubTree;
         int sumOfLeftSubTree;
         int sumOfRightSubTree;
 
@@ -512,6 +512,14 @@ public:
         int bestK=numberOfElements-k;
         this->Select(bestK);
         return this->root->sumOfRightSubTree;
+    }
+    
+    int getNumOfElements(){
+        if (this->root){
+            return 0;
+        }
+        
+        return (1+(this->root->sizeOfLeftSubTree)+(this->root->sizeOfRightSubTree));
     }
 };
 

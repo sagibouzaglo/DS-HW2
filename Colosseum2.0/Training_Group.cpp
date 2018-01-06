@@ -44,3 +44,8 @@ int Training_Group::getID() const {
     return this->ID;
 }
 /**---------------------------------------------------------------------------*/
+
+int Training_Group::getSize(){
+    return this->gladiators.getNumOfElements();
+}
+

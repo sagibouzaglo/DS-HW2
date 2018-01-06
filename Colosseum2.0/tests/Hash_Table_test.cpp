@@ -40,7 +40,6 @@ int main() {
     assert(hashTable.insert(group7, group7.getID(),compare) == true);
     assert(hashTable.insert(group8, group8.getID(),compare) == true);
     assert(hashTable.insert(group3, group3.getID(),compare) == false);
-    Training_Group* tmp =  hashTable.search(group2.getID(), compare);
     assert(*(hashTable.search(group2.getID(), compare)) == group2.getID());
     assert(*(hashTable.search(group4.getID(), compare)) == group4.getID());
     assert(*(hashTable.search(group3.getID(), compare)) == group3.getID());

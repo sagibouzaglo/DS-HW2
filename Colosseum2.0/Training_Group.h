@@ -45,6 +45,8 @@ public:
     bool operator==(Training_Group toCompare);
 
     bool operator!=(Training_Group toCompare);
+    
+    int getSize();
 };
 
 class CompareTrainingGroups {

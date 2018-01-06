@@ -15,18 +15,15 @@
 #include "Training_Group.h"
 #include "Gladiator.h"
 
+
 class Colosseum2{
     HashTable <Training_Group> trainingGroupsTable;
     SplayTree<Gladiator> allGladiators;
     MinHeap<int> trainingGroupsID;
     
-    
-
     public:
     
     Colosseum2(int size, int* trainingGroupsIDs);
-
-    ~Colosseum2();
 
     StatusType addTrainingGroup(int trainingGroupID);
 
