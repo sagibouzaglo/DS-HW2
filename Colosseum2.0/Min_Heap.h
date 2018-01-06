@@ -73,7 +73,7 @@ class MinHeap {
         }
     }
 
-public:
+    public:
 
 
     MinHeap<T>(): arrSize(0),numOfElements(0),arr(nullPtr){}

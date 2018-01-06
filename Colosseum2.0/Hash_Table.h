@@ -110,7 +110,7 @@ class HashTable {
         return key % this->tableSize;
     }
     
-    public:
+public:
     // construct zero initialized hash table of size
     HashTable(int const size) {
         tableSize=size;
