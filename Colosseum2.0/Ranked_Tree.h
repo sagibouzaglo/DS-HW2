@@ -495,7 +495,7 @@ public:
     }
     // return the number of gladiators in the tree
     int getNumOfElements(){
-        if (this->root){
+        if (!this->root){
             return 0;
         }
         return (1+(this->root->sizeOfLeftSubTree)+
