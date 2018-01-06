@@ -36,8 +36,8 @@ class RankedSplayTree {
         N data;
         RankedVertex<N> *left;
         RankedVertex<N> *right;
-        unsigned int sizeOfLeftSubTree;
-        unsigned int sizeOfRightSubTree;
+         int sizeOfLeftSubTree;
+         int sizeOfRightSubTree;
         int sumOfLeftSubTree;
         int sumOfRightSubTree;
 
@@ -313,7 +313,7 @@ class RankedSplayTree {
      * @param the rank you want to find
  * @return the k ranked element
  */
-    T& innerSelect(RankedVertex<T> *vertex, unsigned int biggerthanI , int k){
+    T& innerSelect(RankedVertex<T> *vertex,  int biggerthanI , int k){
         //found the k index
         if(k==biggerthanI+vertex->sizeOfLeftSubTree+1) return vertex->data;
         //k index is in left sub tree
@@ -485,7 +485,7 @@ public:
 * Output:        nullptr if not found or bad argument
      *           a pointer to the desired element if found.
 */
-    T* Select(unsigned int k){
+    T* Select( int k){
         if(this->root==nullptr) return nullptr;
         if(k>this->root->sizeOfLeftSubTree+this->root->sizeOfRightSubTree+1 || k<0)
             return nullptr;
