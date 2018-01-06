@@ -32,8 +32,8 @@
 
 template<class T>
 class MinHeap {
-    int arrSize;
-    int numOfElements;
+     int arrSize;
+     int numOfElements;
     T **arr;
 
     /**
@@ -70,8 +70,10 @@ class MinHeap {
             }
         }
     }
-    public:
-    
+
+public:
+
+
     MinHeap<T>(): arrSize(0),numOfElements(0),arr(nullPtr){}
 
     ~MinHeap<T>(){

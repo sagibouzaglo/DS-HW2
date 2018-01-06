@@ -24,16 +24,17 @@ class Colosseum2{
 
     public:
     
-    Colosseum2(int size, int* trainingGroupsIDs): trainingGroupsTable(size),
-                                                    allGladiators(),
-                                                    trainingGroupsID(){
-        for (int i=0; i<size;i++){
-            Training_Group tmpGroup(trainingGroupsIDs[i]);
-            trainingGroupsTable.insert(tmpGroup, trainingGroupsIDs[i],CompareTrainingGroups());
-        }
-                                                        trainingGroupsID.MakeHeap(trainingGroupsIDs, size);
-                                                        
-    }
+    Colosseum2(int size, int* trainingGroupsIDs);
+
+    ~Colosseum2();
+
+    StatusType addTrainingGroup(int trainingGroupID);
+
+    StatusType addGladiator(int gladiatorID,int score,int trainingGroup);
+
+    StatusType trainingGroupFight(int trainingGroup1,int trainingGroup2,int k1,int k2);
+
+    StatusType getMinTrainingGroup(int* trainingGroup);
     
     
     
