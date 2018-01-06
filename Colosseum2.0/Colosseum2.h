@@ -29,8 +29,9 @@ class Colosseum2{
                                                     trainingGroupsID(){
         for (int i=0; i<size;i++){
             Training_Group tmpGroup(trainingGroupsIDs[i]);
-            trainingGroupsTable.insert(tmpGroup, trainingGroupsIDs[i]),CompareTrainingGroups());
+            trainingGroupsTable.insert(tmpGroup, trainingGroupsIDs[i],CompareTrainingGroups());
         }
+                                                        trainingGroupsID.MakeHeap(trainingGroupsIDs, size);
                                                         
     }
     
