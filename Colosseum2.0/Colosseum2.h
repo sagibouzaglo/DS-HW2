@@ -27,7 +27,10 @@ class Colosseum2{
     Colosseum2(int size, int* trainingGroupsIDs): trainingGroupsTable(size),
                                                     allGladiators(),
                                                     trainingGroupsID(){
-                                                        
+        for (int i=0; i<size;i++){
+            Training_Group tmpGroup(trainingGroupsIDs[i]);
+            trainingGroupsTable.insert(tmpGroup, trainingGroupsIDs[i]),CompareTrainingGroups());
+        }
                                                         
     }
     
