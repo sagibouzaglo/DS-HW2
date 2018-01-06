@@ -35,11 +35,11 @@ class MinHeap {
     }
     public:
     // construct zero initialized Min Heap of size
-    HeapTable(int const size) {
+    MinHeap(int const size) {
         tableSize=size;
-        table = new HashNode<T> *[size]();
+        heap = new T [size]();
         for (int i = 0; i < size; i++){
-            table[i] = nullptr;
+            heap[i] = nullptr;
         }
         lastIn=heap;
     }
