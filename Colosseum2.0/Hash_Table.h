@@ -67,7 +67,6 @@ class HashTable {
     int numOfElements;
     HashNode<T> **table;
    
-    
     /* Description:   This function change the size of the Hash Table, and
      *                insert the old data with the new hash key.
      * Input:         Compare function
