@@ -15,7 +15,9 @@
 
 #define nullPtr 0
 #define ROOT 1
-
+/**
+ * BLAH BLAH
+ */
 /***************************************************************************/
 /*  Min Heap class                                                         */
 /*  types:                                                                 */
@@ -44,13 +46,30 @@ class MinHeap {
         *element1 = *element2;
         *element2 = tmp;
     }
-    public:
-    // construct zero initialized Min Heap of size
-    MinHeap(int const size) {
-        tableSize=size;
-        heap = new T [size]();
-        for (int i = 0; i < size; i++){
-            heap[i] = nullptr;
+    void siftDown( int index) {
+        if (index * 2 <= numOfElements) {
+            //If there is only one son
+            if ((index * 2) + 1 > numOfElements) {
+                if (*(arr[2 * index]) < *(arr[index])) {
+                    swap(arr[2 * index], arr[index]);
+                }
+            }
+                //If there are 2 sons
+            else {
+                //if first son is smaller then second son
+                if (*(this->arr[2 * index]) < *(this->arr[(2 * index) + 1]) ) {
+                    if (*(arr[2 * index]) < *(arr[index])) {
+                        swap(arr[2 * index], arr[index]);
+                        siftDown(2*index);
+                    }
+                } else {
+                    //If the second son is smaller or equal to first
+                    if (*(arr[2 * index + 1]) < *(arr[index])) {
+                        swap(arr[2 * index + 1], arr[index]);
+                        siftDown(2*index+1);
+                    }
+                }
+            }
         }
     }
 
