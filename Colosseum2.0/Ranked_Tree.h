@@ -52,6 +52,8 @@ class RankedSplayTree {
                                          sumOfLeftSubTree(0),
                                          sumOfRightSubTree(0) {}
 
+        RankedVertex<N> operator=(const RankedVertex<N> &vertex);
+        
         ~RankedVertex<N>() {
             left = nullptr;
             right = nullptr;
