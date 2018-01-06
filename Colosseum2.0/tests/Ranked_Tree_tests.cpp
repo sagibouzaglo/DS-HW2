@@ -61,7 +61,7 @@ int main() {
     std::cout << "InOrder Print: " << std::endl; //EXPECTED: 1 3 4 6 8 15 32
     tree.InOrder(printInt);
      **/
-
+/**
     RankedSplayTree<Gladiator,CompareGladiatorByLevel,getGladiatorLevel> gladTree;
     for (int j = 0; j <10 ; ++j) {
         Gladiator gladiator(j,nullptr,j);
@@ -71,5 +71,6 @@ int main() {
         int bestKsum = gladTree.getBestKSum(k);
         std::cout << "The sum of the best " << k<<" is "<<bestKsum<<std::endl;
     }
+    **/
     return 0;
 }
