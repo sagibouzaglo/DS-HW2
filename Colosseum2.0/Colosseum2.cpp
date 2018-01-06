@@ -19,40 +19,28 @@ Colosseum2::Colosseum2(int size, int *trainingGroupsIDs):trainingGroupsTable(siz
     trainingGroupsID.MakeHeap(trainingGroupsIDs,size);
 }
 /**---------------------------------------------------------------------------*/
-/**
-Training_Group::Training_Group(const Training_Group &toCopy){
-    this->ID=toCopy.ID;
-    this->gladiators=toCopy.gladiators;
-
-}
- **/
+/**---------------------------------------------------------------------------*/
+Colosseum2::~Colosseum2() {}
+/**---------------------------------------------------------------------------*/
 /**---------------------------------------------------------------------------*/
 StatusType Colosseum2::addTrainingGroup(int trainingGroupID) {
+    if(trainingGroupID<0)
+        return INVALID_INPUT;
+    Training_Group* ptr= this->trainingGroupsTable.search(trainingGroupID,CompareTrainingGroups());
+    if(ptr!=nullPtr){//If the given Group exists in the system
+        return FAILURE;
+    }
+    Training_Group groupToInsert(trainingGroupID);
+    this->trainingGroupsTable.insert(groupToInsert,trainingGroupID,CompareTrainingGroups());
+}
+/**---------------------------------------------------------------------------*/
+StatusType Colosseum2::addGladiator(int gladiatorID, int score,
+                                    int trainingGroup) {}
+/**---------------------------------------------------------------------------*/
+StatusType Colosseum2::trainingGroupFight(int trainingGroup1,
+                                          int trainingGroup2, int k1, int k2) {}
+/**---------------------------------------------------------------------------*/
+StatusType Colosseum2::getMinTrainingGroup(int *trainingGroup) {}
+/**---------------------------------------------------------------------------*/
+/**---------------------------------------------------------------------------*/
 
-}
-/**---------------------------------------------------------------------------*/
-void Training_Group::TurnOFF() {
-    this->IsActive= false;
-}
-/**---------------------------------------------------------------------------*/
-bool Training_Group::addGladiator(int gladiatorID,int level) {
-    Gladiator gladiator(gladiatorID,nullptr,level);
-    return this->gladiators.Insert(gladiator);
-}
-/**---------------------------------------------------------------------------*/
-bool Training_Group::operator==(Training_Group toCompare) {
-    return this->ID==toCompare.ID;
-}
-/**---------------------------------------------------------------------------*/
-bool Training_Group::operator!=(Training_Group toCompare) {
-    return !(*(this)==toCompare);
-}
-/**---------------------------------------------------------------------------*/
-int Training_Group::getBestKGladiatorsScore(int k) {
-    return this->gladiators.getBestKSum(k);
-}
-/**---------------------------------------------------------------------------*/
-int Training_Group::getID() const {
-    return this->ID;
-}
-/**---------------------------------------------------------------------------*/
