@@ -33,8 +33,5 @@ class Colosseum2{
 
     StatusType getMinTrainingGroup(int* trainingGroup);
     
-    
-    
-    
 };
 #endif /* Colosseum2_h */

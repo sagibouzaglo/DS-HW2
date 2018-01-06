@@ -36,5 +36,12 @@ StatusType trainingGroupFight(void *DS, int trainingGroup1, int trainingGroup2, 
 StatusType getMinTrainingGroup(void *DS, int *trainingGroup){
     NULL_CHECK(DS);
     return ((Colosseum2*)DS)->getMinTrainingGroup(trainingGroup);
-
+}
+void quit(void** DS){
+    if(DS==NULL){
+        return;
+    }
+    Colosseum2** col=((Colosseum2**)DS);
+    delete *col;
+    *DS=NULL;
 }
