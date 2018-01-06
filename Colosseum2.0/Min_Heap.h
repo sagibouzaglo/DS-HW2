@@ -38,8 +38,6 @@ class MinHeap {
 
     /**
      * This function swaps 2 elements pointers
-     * @param element1
-     * @param element2
      */
     void swap(T *element1, T *element2) {
         T tmp = *element1;
