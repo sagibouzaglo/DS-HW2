@@ -80,11 +80,11 @@ class HashTable {
         tableSize*=2;
         table = new HashNode<T>*[tableSize];
         for (int i = 0; i < tableSize; i++){
-            table[i] = nullptr;
+            table[i] = nullPtr;
         }
         numOfElements = 0;
         for (int index = 0; index < oldTableSize; ++index){
-            if (oldTable[index] != nullptr) {
+            if (oldTable[index] != nullPtr) {
                 HashNode<T> *previous;
                 HashNode<T> *current = oldTable[index];
                 while (current != NULL) {
@@ -116,7 +116,7 @@ public:
         numOfElements=0;
         table = new HashNode<T> *[size]();
         for (int i = 0; i < size; i++){
-            table[i] = nullptr;
+            table[i] = nullPtr;
         }
     }
     
@@ -129,7 +129,7 @@ public:
                 current = current->getNext();
                 delete previous;
             }
-            table[i] = nullptr;
+            table[i] = nullPtr;
         }
         delete [] table;
     }
@@ -145,7 +145,7 @@ public:
      */
     template <class Compare>
     bool insert(const T &data,const int &key, const Compare& compare){
-        if (search(key,compare) != nullptr){
+        if (search(key,compare) != nullPtr){
             return false;
         }
         HashNode<T> *tmpNode = new HashNode<T>(data,key);
@@ -171,15 +171,15 @@ public:
     template <class Compare>
     T* search(const int& key, const Compare& compare) {
         int index = hash(key);
-        HashNode<T> *prev = nullptr;
+        HashNode<T> *prev = nullPtr;
         HashNode<T> *current = table[index];
-        while (current != nullptr && (!compare(key,current->getKey()))) {
+        while (current != nullPtr && (!compare(key,current->getKey()))) {
             prev = current;
             current = current->getNext();
         }
         // reached the end of the objects, object doesnt exist
-        if (current == nullptr){
-            return nullptr;
+        if (current == nullPtr){
+            return nullPtr;
         }else{ // object exist
             return (current->getNodeData());
         }
