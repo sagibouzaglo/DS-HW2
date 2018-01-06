@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2470952E1FF6A89A003396F7 /* Gladiator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2470952C1FF6A89A003396F7 /* Gladiator.cpp */; };
-		247095391FFA549C003396F7 /* Hash_Table_test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 247095371FFA5480003396F7 /* Hash_Table_test.cpp */; };
 		2470953E1FFF9485003396F7 /* Training_Group.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2470953B1FFF9485003396F7 /* Training_Group.cpp */; };
 		2470954120010769003396F7 /* Colosseum2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2470953F20010769003396F7 /* Colosseum2.cpp */; };
+		24709543200131E0003396F7 /* main2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 247095301FF92ADB003396F7 /* main2.cpp */; };
+		247095452001321E003396F7 /* library2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 247095442001321E003396F7 /* library2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,7 @@
 		2470953D1FFF9485003396F7 /* Ranked_Tree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ranked_Tree.h; sourceTree = "<group>"; };
 		2470953F20010769003396F7 /* Colosseum2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Colosseum2.cpp; sourceTree = "<group>"; };
 		24709542200107A0003396F7 /* Colosseum2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Colosseum2.h; sourceTree = "<group>"; };
+		247095442001321E003396F7 /* library2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = library2.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				247095301FF92ADB003396F7 /* main2.cpp */,
+				247095442001321E003396F7 /* library2.cpp */,
 				247095281FF6A770003396F7 /* library2.h */,
 				24709542200107A0003396F7 /* Colosseum2.h */,
 				2470953F20010769003396F7 /* Colosseum2.cpp */,
@@ -147,10 +150,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				247095391FFA549C003396F7 /* Hash_Table_test.cpp in Sources */,
+				24709543200131E0003396F7 /* main2.cpp in Sources */,
 				2470952E1FF6A89A003396F7 /* Gladiator.cpp in Sources */,
 				2470953E1FFF9485003396F7 /* Training_Group.cpp in Sources */,
 				2470954120010769003396F7 /* Colosseum2.cpp in Sources */,
+				247095452001321E003396F7 /* library2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

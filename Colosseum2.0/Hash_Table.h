@@ -98,7 +98,6 @@ class HashTable {
         delete[] oldTable;
     }
     
-    
     /* Description:   This function gets a key and return the index to insert
      *                the input to the Hash table
      * Input:         key for hash table

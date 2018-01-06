@@ -54,7 +54,8 @@ class CompareTrainingGroups {
 public:
     explicit CompareTrainingGroups() {}
 
-    int operator()(const Training_Group &group1, const Training_Group &group2) const {
+    int operator()(const Training_Group &group1,
+                        const Training_Group &group2) const {
         return (group2.getID()-group2.getID());
     }
 };

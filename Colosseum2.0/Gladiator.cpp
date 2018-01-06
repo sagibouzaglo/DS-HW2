@@ -5,12 +5,12 @@
 #include "Gladiator.h"
 
 /**---------------------------------------------------------------------------*/
-Gladiator::Gladiator(int ID, Trainer*  trainer, int level): ID(ID), trainer(trainer),
-level(level) {}
+Gladiator::Gladiator(int ID, Trainer*  trainer, int level):
+                                        ID(ID),trainer(trainer),level(level) {}
 /**---------------------------------------------------------------------------*/
 /**---------------------------------------------------------------------------*/
 Gladiator::Gladiator(const Gladiator& glad):ID(glad.ID),trainer(glad.trainer),
-                                 level(glad.level){}
+                                                            level(glad.level){}
 /**---------------------------------------------------------------------------*/
 StatusType Gladiator::LevelUp(int levelincrease) {
     this->level=this->level+levelincrease;

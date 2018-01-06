@@ -15,9 +15,7 @@
 
 #define nullPtr 0
 #define ROOT 1
-/**
- * BLAH BLAH
- */
+
 /***************************************************************************/
 /*  Min Heap class                                                         */
 /*  types:                                                                 */
@@ -35,7 +33,6 @@ class MinHeap {
      int arrSize;
      int numOfElements;
     T **arr;
-
     /**
      * This function swaps 2 elements pointers
      */
@@ -51,17 +48,14 @@ class MinHeap {
                 if (*(arr[2 * index]) < *(arr[index])) {
                     swap(arr[2 * index], arr[index]);
                 }
-            }
-                //If there are 2 sons
-            else {
+            }else {//If there are 2 sons
                 //if first son is smaller then second son
                 if (*(this->arr[2 * index]) < *(this->arr[(2 * index) + 1]) ) {
                     if (*(arr[2 * index]) < *(arr[index])) {
                         swap(arr[2 * index], arr[index]);
                         siftDown(2*index);
                     }
-                } else {
-                    //If the second son is smaller or equal to first
+                } else {  //If the second son is smaller or equal to first
                     if (*(arr[2 * index + 1]) < *(arr[index])) {
                         swap(arr[2 * index + 1], arr[index]);
                         siftDown(2*index+1);
@@ -72,7 +66,6 @@ class MinHeap {
     }
 
 public:
-
 
     MinHeap<T>(): arrSize(0),numOfElements(0),arr(nullPtr){}
 
@@ -97,7 +90,6 @@ public:
             siftDown(j);
         }
     }
-
 
     void Insert(const T &data) {
         if(numOfElements+1==arrSize){
