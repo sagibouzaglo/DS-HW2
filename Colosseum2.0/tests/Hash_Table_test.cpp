@@ -10,6 +10,7 @@
 #define Hash_Table_test_h
 
 #include "Hash_Table.h"
+#include "Training_Group.h"
 #include <assert.h>
 #include<iostream>
 #include "Gladiator.h"
