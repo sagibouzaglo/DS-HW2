@@ -22,64 +22,29 @@ bool compare(int x,int y){
     return x==y;
 }
 int main() {
-    HashTable<int> hashTable(7);
-    assert(hashTable.insert(1, 15,compare) == true);
-    assert(hashTable.insert(2, 8,compare) == true);
-    assert(hashTable.insert(3, 4,compare) == true);
-    assert(hashTable.insert(4, 770,compare) == true);
-    assert(hashTable.insert(5, 142,compare) == true);
-    assert(hashTable.insert(6, 24,compare) == true);
-    assert(hashTable.insert(7, 6,compare) == true);
-    assert(hashTable.insert(8, 40,compare) == true);
-    assert(hashTable.insert(3, 4,compare) == false);
-    assert(*(hashTable.search(8, compare)) == 2);
-    assert(*(hashTable.search(770, compare)) == 4);
-    assert(*(hashTable.search(4, compare)) == 3);
-
+    Training_Group group1(15);
+    Training_Group group2(8);
+    Training_Group group3(4);
+    Training_Group group4(770);
+    Training_Group group5(142);
+    Training_Group group6(24);
+    Training_Group group7(6);
+    Training_Group group8(40);
+    HashTable<Training_Group> hashTable(7);;
+    assert(hashTable.insert(group1, group1.getID(),compare) == true);
+    assert(hashTable.insert(group2, group2.getID(),compare) == true);
+    assert(hashTable.insert(group3, group3.getID(),compare) == true);
+    assert(hashTable.insert(group4, group4.getID(),compare) == true);
+    assert(hashTable.insert(group5, group5.getID(),compare) == true);
+    assert(hashTable.insert(group6, group6.getID(),compare) == true);
+    assert(hashTable.insert(group7, group7.getID(),compare) == true);
+    assert(hashTable.insert(group8, group8.getID(),compare) == true);
+    assert(hashTable.insert(group3, group3.getID(),compare) == false);
+    Training_Group* tmp =  hashTable.search(group2.getID(), compare);
+    assert(*(hashTable.search(group2.getID(), compare)) == group2.getID());
+    assert(*(hashTable.search(group4.getID(), compare)) == group4.getID());
+    assert(*(hashTable.search(group3.getID(), compare)) == group3.getID());
     printInt(3);
-    
- //   assert(*hashTable.search(15) == 15);
-//    assert(*hashTable.search(1) == 1);
-  //  assert(*hashTable.search(3) == 3);
-//    assert(*hashTable.search(8) == 8);
-//    assert(*hashTable.search(32) == 32);
-//    assert(*hashTable.search(6) == 6);
-//    assert(*hashTable.search(4) == 4);
-    /*
-       try {
-     hashTable.find(2);
-     } catch (std::exception& e) {
-     std::cout << "1 - caught exception [V]" << std::endl;
-     }
-     try {
-     hashTable.insert(8);
-     } catch (std::exception& e) {
-     std::cout << "2 - caught exception [V]" << std::endl;
-     }
-     hashTable.remove(8);
-     try {
-     hashTable.find(8);
-     } catch (std::exception& e) {
-     std::cout << "3 - caught exception [V]" << std::endl;
-     }
-     hashTable.insert(8);
-     hashTable.insert(57);
-     hashTable.insert(4516);
-     hashTable.insert(6543);
-     hashTable.insert(99);
-     hashTable.insert(1222);
-     hashTable.insert(137);
-     hashTable.insert(385);
-     // Check table size here
-     hashTable.remove(8);
-     hashTable.remove(57);
-     hashTable.remove(4516);
-     hashTable.remove(6543);
-     hashTable.remove(99);
-     hashTable.remove(1222);
-     hashTable.remove(137);
-     hashTable.remove(385);
-     // Check table size here*/
 }
 
 #endif /* Hash_Table_test_h */
