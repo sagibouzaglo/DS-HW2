@@ -31,8 +31,8 @@ public:
      * it CANNOT!!!! differ 2 gladiators with same ID but not same level
      * Please Advise to check correctness of insertion prior of using
      * or add a GladiatorID tree to the class
-     * @param gladiatorID
-     * @param level
+     * @param gladiatorID -
+     * @param level - 
      * @return True if insertion was successful
      *          Flase if not
      */

@@ -308,11 +308,7 @@ class RankedSplayTree {
     }
     /**
  * Recursive function the travels on the tree to find the K ranked element
- * @param a vertex in the tree
- * @param the number of elements that are smaller then the given vertex
-     * @param the rank you want to find
- * @return the k ranked element
- */
+      */
     T& innerSelect(RankedVertex<T> *vertex,  int biggerthanI , int k){
         //found the k index
         if(k==biggerthanI+vertex->sizeOfLeftSubTree+1) return vertex->data;
