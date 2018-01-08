@@ -6,7 +6,7 @@
 
 /**---------------------------------------------------------------------------*/
 Training_Group::Training_Group(int ID): ID(ID),gladiators(),IsActive(true){
-    gladiators=new RankedSplayTree<Gladiator, CompareGladiatorByLevel, getGladiatorLevel>;
+    gladiators = new RankedSplayTree<Gladiator, CompareGladiatorByLevel, getGladiatorLevel>;
 }
 /**---------------------------------------------------------------------------*/
 /**

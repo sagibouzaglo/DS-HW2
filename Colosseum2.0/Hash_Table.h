@@ -95,18 +95,13 @@ class HashTable {
                     previous = current;
                     current = current->getNext();
                     setNull(previous->getNodeData());
-                //    cout << "Free Node"<< index << endl;
                     delete previous;
                 }
             }
         }
-       // cout << "Free array" << endl;
         delete [] oldTable;
-  //      cout<<"reSize:"<<endl;
-  //      printTable();
     }
     
-   
     /* Description:   This function gets a key and return the index to insert
      *                the input to the Hash table
      * Input:         key for hash table
@@ -118,7 +113,7 @@ class HashTable {
     }
     
 public:
-    /*
+    
     void printTable(){
         cout << "Table size: " << tableSize << endl;
         for (int index = 0; index < tableSize; ++index){
@@ -138,7 +133,7 @@ public:
             cout<<endl;
         }
     }
-     */
+     
     // construct zero initialized hash table of size
     HashTable(int const size, SetNull setNull) {
         this->tableSize = size!=0 ? size : DEFAULT_SIZE;
@@ -157,12 +152,10 @@ public:
             while (current != NULL) {
                 HashNode<T> *previous = current;
                 current = current->getNext();
-              //  cout << "Free Node "<< i << endl;
                 delete previous;
             }
             table[i] = nullPtr;
         }
-     //   cout << "Free array" << endl;
         delete [] table;
     }
     
@@ -218,6 +211,4 @@ public:
     }
 };
 
-
-    
 #endif /* Hash_Table_h */
