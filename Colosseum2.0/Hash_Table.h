@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <iostream>
 
+#define DEFAULT_SIZE 4
 using namespace std;
 #define nullPtr 0
 
@@ -101,8 +102,8 @@ class HashTable {
         }
        // cout << "Free array" << endl;
         delete [] oldTable;
-        cout<<"reSize:"<<endl;
-        printTable();
+  //      cout<<"reSize:"<<endl;
+  //      printTable();
     }
     
    
@@ -117,7 +118,7 @@ class HashTable {
     }
     
 public:
-    
+    /*
     void printTable(){
         cout << "Table size: " << tableSize << endl;
         for (int index = 0; index < tableSize; ++index){
@@ -137,13 +138,14 @@ public:
             cout<<endl;
         }
     }
+     */
     // construct zero initialized hash table of size
     HashTable(int const size, SetNull setNull) {
-        tableSize=size;
-        numOfElements=0;
-        table = new HashNode<T> *[size]();
+        this->tableSize = size!=0 ? size : DEFAULT_SIZE;
+        this->numOfElements=0;
+        this->table = new HashNode<T> *[this->tableSize]();
         for (int i = 0; i < size; i++){
-            table[i] = nullPtr;
+            this->table[i] = nullPtr;
         }
         this->setNull=setNull;
     }

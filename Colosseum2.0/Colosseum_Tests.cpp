@@ -54,29 +54,30 @@ void checkAddGladiator(){
 void pythoncheck(){
     int arr[]={0,1};
     Colosseum2 colosseum2(2,arr);
+    Colosseum2 colosseum3(0,arr);
     colosseum2.addTrainingGroup(8);
-    cout << "Isert 8" << endl;
-    colosseum2.print();
+   // cout << "Isert 8" << endl;
+ //   colosseum2.print();
     colosseum2.addTrainingGroup(7);
-    cout << "Isert 7" << endl;
-    colosseum2.print();
+  //  cout << "Isert 7" << endl;
+  //  colosseum2.print();
     colosseum2.addTrainingGroup(6);
-    cout << "Isert 6" << endl;
-    colosseum2.print();
+  //  cout << "Isert 6" << endl;
+  //  colosseum2.print();
     colosseum2.addTrainingGroup(3);
-    cout << "Isert 3" << endl;
-    colosseum2.print();
+  //  cout << "Isert 3" << endl;
+  //  colosseum2.print();
     colosseum2.addTrainingGroup(2);
-    cout << "Isert 2" << endl;
-    colosseum2.print();
+  //  cout << "Isert 2" << endl;
+  //  colosseum2.print();
     colosseum2.addGladiator(436,33,0);
     colosseum2.addGladiator(205,966,2);
     colosseum2.addTrainingGroup(5);
-    cout << "Isert 5" << endl;
-    colosseum2.print();
+  //  cout << "Isert 5" << endl;
+  //  colosseum2.print();
     colosseum2.addTrainingGroup(1);
-    cout << "Isert 1" << endl;
-    colosseum2.print();
+  //  cout << "Isert 1" << endl;
+  //  colosseum2.print();
     colosseum2.addTrainingGroup(1);
  //   cout << "Isert 2" << endl;
   //  colosseum2.print();
@@ -121,12 +122,12 @@ void checkTrainingGroupFightAndFindMin(){
 }
 
 int main(){
-  //  checkAddTrainingGroup();
-  //  cout << "Add training group: OK" << endl;
-  //  checkAddGladiator();
-  //  cout << "Add Gladiator: OK" << endl;
-  //  checkTrainingGroupFightAndFindMin();
-  //  cout << "Training group fight: OK" << endl;
+    checkAddTrainingGroup();
+    cout << "Add training group: OK" << endl;
+    checkAddGladiator();
+    cout << "Add Gladiator: OK" << endl;
+    checkTrainingGroupFightAndFindMin();
+    cout << "Training group fight: OK" << endl;
     pythoncheck();
     cout << "Python: OK" << endl;
 

@@ -40,10 +40,11 @@ class Colosseum2{
     StatusType trainingGroupFight(int trainingGroup1,int trainingGroup2,int k1,int k2);
 
     StatusType getMinTrainingGroup(int* trainingGroup);
-    
+ /*
     void print(){
         trainingGroupsTable.printTable();
     }
+  */
 };
 
 #endif /* Colosseum2_h */
