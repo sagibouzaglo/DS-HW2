@@ -317,6 +317,9 @@ public:
     RankedSplayTree<T,Compare,ExtractKey>():
             root(nullptr),compare(Compare()),getKey(ExtractKey()){}
 
+    RankedSplayTree<T,Compare,ExtractKey>(const RankedSplayTree<T,Compare,ExtractKey> &toCopy):
+                    root(toCopy.root),compare(Compare()),getKey(ExtractKey()){};
+   
     ~RankedSplayTree() {
         postOrderDemolition(this->root);
     }

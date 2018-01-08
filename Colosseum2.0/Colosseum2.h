@@ -16,8 +16,16 @@
 #include "Gladiator.h"
 
 
+
+class SetNull{
+    public:
+    void operator()(Training_Group* group){
+        group->setTreeToNull();
+    }
+};
+
 class Colosseum2{
-    HashTable <Training_Group> trainingGroupsTable;
+    HashTable <Training_Group, SetNull> trainingGroupsTable;
     SplayTree<Gladiator> allGladiators;
     MinHeap<int> trainingGroupsID;
     
@@ -33,5 +41,9 @@ class Colosseum2{
 
     StatusType getMinTrainingGroup(int* trainingGroup);
     
+    void print(){
+        trainingGroupsTable.printTable();
+    }
 };
+
 #endif /* Colosseum2_h */

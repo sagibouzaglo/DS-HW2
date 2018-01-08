@@ -11,7 +11,9 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <iostream>
 
+using namespace std;
 #define nullPtr 0
 
 /***************************************************************************/
@@ -26,7 +28,7 @@
 /*  search - check if the data already exist                               */
 /***************************************************************************/
 
-template <class T>
+template <class T, class SetNull>
 class HashTable {
     /***********************/
     /*  Node Declaration   */
@@ -66,7 +68,7 @@ class HashTable {
     int tableSize;
     int numOfElements;
     HashNode<T> **table;
-   
+    SetNull setNull;
     /* Description:   This function change the size of the Hash Table, and
      *                insert the old data with the new hash key.
      * Input:         Compare function
@@ -87,17 +89,23 @@ class HashTable {
             if (oldTable[index] != nullPtr) {
                 HashNode<T> *previous;
                 HashNode<T> *current = oldTable[index];
-                while (current != NULL) {
-                    insert( *current->getNodeData(),current->getKey(),compare);
+                while (current != nullPtr) {
+                    insert(*current->getNodeData(),current->getKey(),compare);
                     previous = current;
                     current = current->getNext();
+                    setNull(previous->getNodeData());
+                //    cout << "Free Node"<< index << endl;
                     delete previous;
                 }
             }
         }
-        delete[] oldTable;
+       // cout << "Free array" << endl;
+        delete [] oldTable;
+        cout<<"reSize:"<<endl;
+        printTable();
     }
     
+   
     /* Description:   This function gets a key and return the index to insert
      *                the input to the Hash table
      * Input:         key for hash table
@@ -109,14 +117,35 @@ class HashTable {
     }
     
 public:
+    
+    void printTable(){
+        cout << "Table size: " << tableSize << endl;
+        for (int index = 0; index < tableSize; ++index){
+            cout<< index<< ": ";
+            if (table[index] != nullPtr) {
+                HashNode<T> *previous;
+                HashNode<T> *current = table[index];
+                while (current != NULL) {
+                    cout << current->getKey() << " ";
+                    if (current->getNodeData()){
+                      //  cout << "Node Data: " << endl << bla;
+                    }
+                    previous = current;
+                    current = current->getNext();
+                }
+            }
+            cout<<endl;
+        }
+    }
     // construct zero initialized hash table of size
-    HashTable(int const size) {
+    HashTable(int const size, SetNull setNull) {
         tableSize=size;
         numOfElements=0;
         table = new HashNode<T> *[size]();
         for (int i = 0; i < size; i++){
             table[i] = nullPtr;
         }
+        this->setNull=setNull;
     }
     
     // destroys the table
@@ -126,10 +155,12 @@ public:
             while (current != NULL) {
                 HashNode<T> *previous = current;
                 current = current->getNext();
+              //  cout << "Free Node "<< i << endl;
                 delete previous;
             }
             table[i] = nullPtr;
         }
+     //   cout << "Free array" << endl;
         delete [] table;
     }
     
@@ -143,7 +174,7 @@ public:
      * Return Values: true if insert succeded, false if not
      */
     template <class Compare>
-    bool insert(const T &data,const int &key, const Compare& compare){
+    bool insert(T data,const int &key, const Compare& compare){
         if (search(key,compare) != nullPtr){
             return false;
         }
@@ -156,7 +187,7 @@ public:
             this->table[index]=tmpNode;
         }
         this->numOfElements++;
-        if (this->numOfElements >= (this->tableSize/2)){
+        if (this->numOfElements >= (this->tableSize)){
            tableReSize(compare);
         }
         return true;
@@ -184,5 +215,7 @@ public:
         }
     }
 };
+
+
     
 #endif /* Hash_Table_h */

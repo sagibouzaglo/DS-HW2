@@ -5,13 +5,14 @@
 #include "Training_Group.h"
 
 /**---------------------------------------------------------------------------*/
-Training_Group::Training_Group(int ID):ID(ID),gladiators(),IsActive(true) {}
+Training_Group::Training_Group(int ID): ID(ID),gladiators(),IsActive(true){
+    gladiators=new RankedSplayTree<Gladiator, CompareGladiatorByLevel, getGladiatorLevel>;
+}
 /**---------------------------------------------------------------------------*/
 /**
 Training_Group::Training_Group(const Training_Group &toCopy){
     this->ID=toCopy.ID;
     this->gladiators=toCopy.gladiators;
-
 }
  **/
 /**---------------------------------------------------------------------------*/
@@ -25,7 +26,7 @@ void Training_Group::TurnOFF() {
 /**---------------------------------------------------------------------------*/
 bool Training_Group::addGladiator(int gladiatorID,int level) {
     Gladiator gladiator(gladiatorID,nullptr,level);
-    return this->gladiators.Insert(gladiator);
+    return this->gladiators->Insert(gladiator);
 }
 /**---------------------------------------------------------------------------*/
 bool Training_Group::operator==(Training_Group toCompare) {
@@ -37,7 +38,7 @@ bool Training_Group::operator!=(Training_Group toCompare) {
 }
 /**---------------------------------------------------------------------------*/
 int Training_Group::getBestKGladiatorsScore(int k) {
-    return this->gladiators.getBestKSum(k);
+    return this->gladiators->getBestKSum(k);
 }
 /**---------------------------------------------------------------------------*/
 int Training_Group::getID() const {
@@ -46,6 +47,12 @@ int Training_Group::getID() const {
 /**---------------------------------------------------------------------------*/
 
 int Training_Group::getSize(){
-    return this->gladiators.getNumOfElements();
+    return this->gladiators->getNumOfElements();
 }
+/**---------------------------------------------------------------------------*/
+
+void Training_Group::setTreeToNull(){
+    this->gladiators = nullPtr;
+}
+
 

@@ -10,8 +10,9 @@
 bool compare(int x,int y){
     return x==y;
 }
+
 /**---------------------------------------------------------------------------*/
-Colosseum2::Colosseum2(int size, int *trainingGroupsIDs):trainingGroupsTable(size),
+Colosseum2::Colosseum2(int size, int *trainingGroupsIDs):trainingGroupsTable(size,SetNull()),
                                                          allGladiators(),
                                                          trainingGroupsID() {
     for (int i=0; i<size;i++){
@@ -39,7 +40,7 @@ StatusType Colosseum2::addTrainingGroup(int trainingGroupID) {
 /**---------------------------------------------------------------------------*/
 StatusType Colosseum2::addGladiator(int gladiatorID, int score,
                                     int trainingGroup) {
-    if (gladiatorID<0 || score<0){
+    if (gladiatorID<0 || score<0 || trainingGroup<0){
         return INVALID_INPUT;
     }
     Gladiator tmpGladiator(gladiatorID,nullPtr,score);

@@ -9,10 +9,11 @@
 #include "Ranked_Tree.h"
 #include "Gladiator.h"
 #include "Splay_Tree.h"
+#define nullPtr 0
 
 class Training_Group {
     int ID;
-    RankedSplayTree<Gladiator,CompareGladiatorByLevel,getGladiatorLevel> gladiators;
+    RankedSplayTree<Gladiator,CompareGladiatorByLevel,getGladiatorLevel>* gladiators;
     bool IsActive;
 
 public:
@@ -26,6 +27,7 @@ public:
 
     bool isActive() const;
 
+    void setTreeToNull();
     /**
      * Importent!- Because Training group Class doesnt have an ID tree
      * it CANNOT!!!! differ 2 gladiators with same ID but not same level
